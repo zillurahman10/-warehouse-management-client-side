@@ -15,6 +15,10 @@
     transition: 0.3s;
 }
 
+.links a:hover {
+    color: black;
+}
+
 .links a:hover::after {
     width: 100%;
 }

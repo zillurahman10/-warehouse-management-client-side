@@ -5,7 +5,7 @@ import logo from '../../images/logo.jpg'
 
 const Header = () => {
     return (
-        <div className='d-flex justify-content-between container header'>
+        <div className=' mt-2 d-flex justify-content-between container header'>
             <div>
                 <Link to='/'>
                     <img className='w-75' src={logo} alt="" />
