@@ -2,7 +2,7 @@ import './App.css';
 import Header from './Shared/Header/Header';
 import Footer from './Shared/Footer/Footer';
 import { Route, Routes } from 'react-router-dom';
-import Home from './Pages/Home/Home';
+import Home from './Pages/Home/Home/Home';
 
 function App() {
   return (
