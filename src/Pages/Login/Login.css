@@ -1,0 +1,49 @@
+.login-form {
+    background-color: white;
+    box-shadow: 1px 1px 10px;
+    padding: 100px;
+    border-radius: 10px;
+}
+
+.email-input {
+    background-color: white;
+    border: none;
+    border-bottom: 2px solid gray;
+    width: 400px;
+    padding-bottom: 8px;
+    font-size: 20px;
+    margin: 10px 0px;
+}
+
+.password-input {
+    background-color: white;
+    border: none;
+    border-bottom: 2px solid gray;
+    width: 400px;
+    padding-bottom: 8px;
+    font-size: 20px;
+}
+
+.submit-button {
+    border: none;
+    background-color: white;
+    border: 2px solid gray;
+    width: 400px;
+    height: 50px;
+    margin-top: 20px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.submit-button:hover {
+    transition: 0.5s;
+    background-color: gainsboro;
+}
+
+.form-title {
+    background-color: white;
+}
+
+.form-link {
+    background-color: white;
+}
