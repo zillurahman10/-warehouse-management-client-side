@@ -22,3 +22,9 @@
 .links a:hover::after {
     width: 100%;
 }
+
+@media screen and (min-width : 720px) {
+    .heroIcon {
+        display: none;
+    }
+}
