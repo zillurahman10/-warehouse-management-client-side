@@ -2,10 +2,17 @@ import React, { useState } from 'react';
 import './Header.css'
 import { Link } from 'react-router-dom';
 import logo from '../../images/logo.jpg'
-import { MenuIcon, XIcon } from '@heroicons/react/solid'
+import auth from '../../firebase.init';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { signOut } from 'firebase/auth';
+// import { MenuIcon, XIcon } from '@heroicons/react/solid' 
 
 const Header = () => {
-    const [open, setOpen] = useState(false)
+    // const [open, setOpen] = useState(false)
+    const [user, loading, error] = useAuthState(auth);
+    const logOut = () => {
+        signOut(auth)
+    }
     return (
         <div className='mt-2 d-flex justify-content-between container header'>
             <div>
@@ -17,11 +24,13 @@ const Header = () => {
                 <Link className='mx-4 text-decoration-none' to='/'>HOME</Link>
                 <Link className='mx-4 text-decoration-none' to='/inventory'>INVERTORY</Link>
                 <Link className='mx-4 text-decoration-none' to='/blogs'>BLOGS</Link>
-                <Link className='mx-4 text-decoration-none' to='/login'>LOGIN</Link>
+                {
+                    user ? <button onClick={logOut}>Sign Out</button> : <Link className='mx-4 text-decoration-none' to='/login'>LOGIN</Link>
+                }
             </div>
-            <div onClick={() => setOpen(!open)} className='heroIcon' style={{ width: '50px', height: '50px' }}>
+            {/* <div onClick={() => setOpen(!open)} className='heroIcon' style={{ width: '50px', height: '50px' }}>
                 {open ? <XIcon></XIcon> : <MenuIcon></MenuIcon>}
-            </div>
+            </div> */}
         </div>
     );
 };
