@@ -10,9 +10,11 @@ const Inventory = () => {
             .then(data => setProduct(data))
     }, [id])
     const { name, img, price, description, pastMileage, fuelType, cc, quantity, _id, supplierName } = product
-    const [productQuantity, setProductQuantity] = useState("")
+    const [productQuantity, setProductQuantity] = useState()
+    console.log(productQuantity);
+
     const handleDeliver = () => {
-        const count = (quantity - 1).toString()
+        const count = (quantity - 1)
         const update = { count }
         const url = `http://localhost:5000/inventory/${_id}`
         console.log(url);
@@ -25,8 +27,9 @@ const Inventory = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(parseInt(data.count));
-                setProductQuantity(parseInt(data.count))
+                console.log(parseInt(data?.count));
+                alert('updated')
+                setProductQuantity(parseInt(data?.count))
             })
     }
     return (
@@ -40,7 +43,7 @@ const Inventory = () => {
                     <p>{description}</p>
                     <p>Quantity : {productQuantity}</p>
                     <p>Supplier : {supplierName}</p>
-                    <h5>{price}</h5>
+                    <h5>Price : {price}</h5>
                     <button onClick={handleDeliver}>Update</button>
                 </div>
             </div>

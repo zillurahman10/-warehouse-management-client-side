@@ -9,7 +9,7 @@ const Product = ({ product }) => {
         navigate(`/inventory/${_id}`)
     }
     return (
-        <div data-aos="fade-up" data-aos-duration="2000" className='shadow-lg m-3'>
+        <div data-aos="zoom-in" className='shadow-lg m-3'>
             <div className=''>
                 <img className='img-fluid' src={img} alt="" />
             </div>
