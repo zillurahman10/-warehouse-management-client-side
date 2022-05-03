@@ -20,17 +20,20 @@ const Header = () => {
                     <img className='w-75' src={logo} alt="" />
                 </Link>
             </div>
-            <div className={`mt-4 links`}>
+            <div className='mt-4 links d-flex'>
                 <Link className='mx-4 text-decoration-none' to='/'>HOME</Link>
-                <Link className='mx-4 text-decoration-none' to='/inventory'>INVERTORY</Link>
                 <Link className='mx-4 text-decoration-none' to='/blogs'>BLOGS</Link>
-                {
-                    user ? <button onClick={logOut}>Sign Out</button> : <Link className='mx-4 text-decoration-none' to='/login'>LOGIN</Link>
-                }
+                <div>
+                    {
+                        user ? <div>
+                            <Link className='mx-4 text-decoration-none' to='/manageinventory'>MANAGE INVENTORY</Link>
+                            <Link className='mx-4 text-decoration-none' to='additems'>ADD ITEM</Link>
+                            <Link className='mx-4 text-decoration-none' to='/myitems'>MY ITEMS</Link>
+                            <button onClick={logOut}>Sign Out</button>
+                        </div> : <Link className='mx-4 text-decoration-none' to='/login'>LOGIN</Link>
+                    }
+                </div>
             </div>
-            {/* <div onClick={() => setOpen(!open)} className='heroIcon' style={{ width: '50px', height: '50px' }}>
-                {open ? <XIcon></XIcon> : <MenuIcon></MenuIcon>}
-            </div> */}
         </div>
     );
 };

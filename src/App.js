@@ -7,6 +7,8 @@ import Login from './Pages/Login/Login';
 import SignUp from './Pages/SignUp/SignUp';
 import Inventory from './Pages/Inventory/Inventory';
 import ManageInventory from './Pages/ManageInventory/ManageInventory';
+import AddItems from './Pages/AddItems/AddItems';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -18,8 +20,20 @@ function App() {
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
         <Route path='/inventory/:id' element={<Inventory></Inventory>}></Route>
         <Route path='/manageinventory' element={<ManageInventory></ManageInventory>}></Route>
+        <Route path='/additems' element={<AddItems></AddItems>}></Route>
       </Routes>
       <Footer></Footer>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }

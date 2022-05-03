@@ -1,0 +1,15 @@
+.product-card {
+    border-radius: 10px;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.product-card:hover {
+    transition: 0.5s;
+    position: relative;
+    bottom: 30px;
+}
+
+.product-card img {
+    border-radius: 10px;
+}
