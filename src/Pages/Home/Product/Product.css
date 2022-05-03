@@ -13,3 +13,26 @@
 .product-card img {
     border-radius: 10px;
 }
+
+.engineIcon {
+    width: 23px;
+    margin-bottom: 3px;
+    margin-left: 10px;
+}
+
+.update-button {
+    border: 1px solid gray;
+    position: relative;
+    top: 0;
+    width: 100%;
+    background-color: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.update-button:hover {
+    transition: 0.5s;
+    background-color: gray;
+    color: white;
+}
