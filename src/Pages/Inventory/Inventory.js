@@ -11,16 +11,15 @@ const Inventory = () => {
     }, [id])
     const { name, img, price, description, pastMileage, fuelType, cc, quantity, _id, supplierName } = product
     const [productQuantity, setProductQuantity] = useState()
-    console.log(quantity);
 
 
     const handleDeliver = () => {
-        const count = (parseInt(quantity - 1))
+        const count = parseInt(quantity - 1)
         const update = { count, product }
         const url = `http://localhost:5000/inventory/${_id}`
         console.log(url);
         fetch(url, {
-            method: "PATCH",
+            method: "PUT",
             headers: {
                 "content-type": "application/json"
             },
@@ -28,12 +27,13 @@ const Inventory = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(parseInt(data?.count));
+                console.log(data);
                 alert('updated')
                 setProductQuantity(parseInt(data?.count))
             })
-        console.log(productQuantity);
     }
+    console.log(quantity);
+    console.log(productQuantity);
     return (
         <div>
             <div className='d-flex justify-content-center mt-5 shadow-lg mx-auto p-5 rounded-3' style={{ width: '800px' }}>
