@@ -3,6 +3,7 @@ import './Login.css'
 import { useSignInWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const [
@@ -27,6 +28,15 @@ const Login = () => {
     }
 
     if (user || googleUser || facebookUser) {
+        toast(user?.displayName, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
         navigate('/')
     }
 
@@ -47,9 +57,10 @@ const Login = () => {
                     <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
                     <input type="password" name='password' className="form-control" id="exampleInputPassword1" placeholder='Your Password' required />
                 </div>
-                <div className="mb-3 form-check">
+                <p className='text-danger d-flex justify-content-center'>{error?.message}</p>
+                <div className="mb-3 form-check d-flex justify-content-center">
                     <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                    <label className="form-check-label" htmlFor="exampleCheck1">I agree the terms and condition</label>
+                    <label className="ms-2 form-check-label" htmlFor="exampleCheck1">I agree the terms and condition</label>
                 </div>
                 <p className='d-flex justify-content-center'>New in car.com? <Link to='/signup'>Create a new account</Link></p>
                 <button type="submit" className="btn btn-primary w-100">Submit</button>

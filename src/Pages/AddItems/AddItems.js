@@ -11,8 +11,12 @@ const AddItems = () => {
     const [quantity, setQuantity] = useState(Number)
     const [supplierName, setSupplierName] = useState("")
     const [description, setDescription] = useState("")
+    const [email, setEmail] = useState("")
     const handleName = e => {
         setName(e.target.value)
+    }
+    const handleEmail = e => {
+        setEmail(e.target.value)
     }
     const handleImgUrl = e => {
         setImgUrl(e.target.value)
@@ -40,7 +44,7 @@ const AddItems = () => {
     }
     const handleFormSubmit = e => {
         e.preventDefault()
-        const product = { name, imgUrl, pastMileage, fuelType, engineCapacity, price, quantity, supplierName, description }
+        const product = { name, imgUrl, pastMileage, fuelType, engineCapacity, price, quantity, supplierName, description, email }
 
         fetch('http://localhost:5000/products', {
             method: 'POST',
@@ -53,15 +57,15 @@ const AddItems = () => {
             .then(data => {
                 console.log(data);
             })
-        // toast('Successfull', {
-        //     position: "top-center",
-        //     autoClose: 5000,
-        //     hideProgressBar: false,
-        //     closeOnClick: true,
-        //     pauseOnHover: true,
-        //     draggable: true,
-        //     progress: undefined,
-        // });
+        toast('Successfull', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
     }
     return (
         <div className='w-50 mx-auto shadow p-2 mt-2'>
@@ -101,6 +105,10 @@ const AddItems = () => {
                         <input onBlur={handleImgUrl} type="text" name="imgUrl" id="imgUrl" className='form-control' placeholder='Image URL' required />
                     </div>
                     <div>
+                        <label htmlFor="email" className='form-label'>Your Email</label>
+                        <input onBlur={handleEmail} type="email" name="email" id="email" required placeholder='Your Email' className='form-control' />
+                    </div>
+                    <div>
                         <label htmlFor="description" className='form-label'>Short description</label>
                         <textarea onBlur={handleDescription} className='form-control' name="description" id="description" required ></textarea>
                     </div>
@@ -113,7 +121,7 @@ const AddItems = () => {
                         </div>
                     </div>
                     <div className="col-12">
-                        <button type="submit" className="btn btn-primary w-100">Sign in</button>
+                        <input type="submit" value="Add car" className='w-100 btn btn-primary' />
                     </div>
                 </form>
             </div>

@@ -17,7 +17,6 @@ const Inventory = () => {
         const count = parseInt(quantity - 1)
         const update = { count, product }
         const url = `http://localhost:5000/inventory/${_id}`
-        console.log(url);
         fetch(url, {
             method: "PUT",
             headers: {
@@ -29,7 +28,7 @@ const Inventory = () => {
             .then(data => {
                 console.log(data);
                 alert('updated')
-                setProductQuantity(parseInt(data?.count))
+                setProductQuantity(count)
             })
     }
     console.log(quantity);
@@ -43,7 +42,7 @@ const Inventory = () => {
                 <div>
                     <h4>{name}</h4>
                     <p>{description}</p>
-                    <p>Quantity : {productQuantity}</p>
+                    <p>Quantity : {productQuantity ? productQuantity : quantity}</p>
                     <p>Supplier : {supplierName}</p>
                     <h5>Price : {price}</h5>
                     <button onClick={handleDeliver}>Update</button>
