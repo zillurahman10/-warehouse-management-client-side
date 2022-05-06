@@ -57,7 +57,9 @@ const AddItems = () => {
             .then(data => {
                 console.log(data);
             })
-        toast('Successfull', {
+
+        e.target.reset()
+        toast.success('Successfully added item', {
             position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,

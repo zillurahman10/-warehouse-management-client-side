@@ -3,6 +3,8 @@ import React from 'react';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init'
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 const SignUp = () => {
     const [
@@ -27,7 +29,16 @@ const SignUp = () => {
         console.log(email);
         console.log(password);
         console.log(confirmPassword);
-
+        e.target.reset()
+        toast('email sent', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
     }
     if (user) {
         navigate('/')
