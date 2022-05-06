@@ -1,0 +1,10 @@
+.brand-cotainer {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+
+@media screen and (max-width : 576px) {
+    .brand-cotainer {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
