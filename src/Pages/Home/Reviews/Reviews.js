@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Reviews.css'
 import Review from '../Review/Review';
 import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
 const Reviews = () => {
     const [reviews, setReviews] = useState([])
@@ -28,10 +29,14 @@ const Reviews = () => {
             .then(res => res.json())
             .then(data => {
                 const postReview = [...reviews, fullReview]
-                toast('succesfully posted')
+                Swal.fire(
+                    'Posted',
+                    'Your review is successfully posted'
+                )
                 setReviews(postReview)
                 console.log(data);
             })
+
     }
     return (
         <div className='my-5'>

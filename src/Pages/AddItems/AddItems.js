@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
 const AddItems = () => {
     const [name, setName] = useState("")
@@ -59,15 +60,11 @@ const AddItems = () => {
             })
 
         e.target.reset()
-        toast.success('Successfully added item', {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
+        Swal.fire(
+            'Added Product',
+            'Your product is successfully added',
+            'Added'
+        )
     }
     return (
         <div className='w-50 mx-auto shadow p-2 mt-2'>

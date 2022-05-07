@@ -1,9 +1,10 @@
 import React from 'react';
 import './Login.css'
 import { useSignInWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const Login = () => {
     const [
@@ -12,19 +13,27 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+    let location = useLocation();
+
+    let from = location.state?.from?.pathname || "/";
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const [signInWithFacebook, facebookUser, facebookLoading, facebookError] = useSignInWithFacebook(auth);
     const navigate = useNavigate()
+    if (loading) {
+        return <h1>Loading...</h1>
+    }
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault()
 
         const email = e.target.email.value
         const password = e.target.password.value
 
-        signInWithEmailAndPassword(email, password)
+        await signInWithEmailAndPassword(email, password)
+        const { data } = await axios.post('http://localhost:5000/login', { email })
 
-        console.log(email, password);
+        localStorage.setItem('accessToken', data.accessToken)
+        navigate(from, { replace: true });
     }
 
     if (user || googleUser || facebookUser) {
@@ -37,7 +46,7 @@ const Login = () => {
             draggable: true,
             progress: undefined,
         });
-        navigate('/')
+        // navigate('/')
     }
 
     const googleSignIn = () => {
