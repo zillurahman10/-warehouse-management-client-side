@@ -4,7 +4,7 @@ import Brand from '../Brand/Brand';
 const Brands = () => {
     const [brands, setBrands] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/brands')
+        fetch('https://mysterious-forest-45427.herokuapp.com/brands')
             .then(res => res.json())
             .then(data => setBrands(data))
     }, [])

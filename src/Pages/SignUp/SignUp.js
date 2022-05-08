@@ -42,7 +42,7 @@ const SignUp = () => {
 
 
         await createUserWithEmailAndPassword(email, password)
-        const { data } = await axios.post('http://localhost:5000/login', { email })
+        const { data } = await axios.post('https://mysterious-forest-45427.herokuapp.com/inventory', { email })
 
         localStorage.setItem('accessToken', data.accessToken)
         Swal.fire(

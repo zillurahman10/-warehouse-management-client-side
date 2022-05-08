@@ -12,7 +12,7 @@ const Inventory = () => {
     const { id } = useParams()
 
     useEffect(() => {
-        fetch(`http://localhost:5000/inventory/${id}`)
+        fetch(`https://mysterious-forest-45427.herokuapp.com/inventory/${id}`)
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [id])
@@ -25,7 +25,7 @@ const Inventory = () => {
         const minus = againUpdatedQuantity - 1
         setAgainUpdatedQuantity(minus)
         const update = { againUpdatedQuantity, product }
-        const url = `http://localhost:5000/inventory/${_id}`
+        const url = `https://mysterious-forest-45427.herokuapp.com/inventory/${_id}`
         fetch(url, {
             method: "PUT",
             headers: {
@@ -49,7 +49,7 @@ const Inventory = () => {
         console.log(quantity);
         setAgainUpdatedQuantity(plus)
         const update = { againUpdatedQuantity, product }
-        const url = `http://localhost:5000/inventory/${_id}`
+        const url = `https://mysterious-forest-45427.herokuapp.com/inventory/${_id}`
         fetch(url, {
             method: "PUT",
             headers: {

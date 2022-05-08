@@ -29,7 +29,7 @@ const ManageInventoryTable = ({ product }) => {
 
         if (confirm) {
             console.log('Deleting item', id);
-            const url = `http://localhost:5000/inventory/${id}`
+            const url = `https://mysterious-forest-45427.herokuapp.com/inventory/${id}`
             fetch(url, {
                 method: 'DELETE'
             })

@@ -5,7 +5,7 @@ import ManageInventoryTable from '../ManageInventoryTable/ManageInventoryTable';
 const ManageInventory = () => {
     const [products, setProducts] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://mysterious-forest-45427.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [])

@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 const Reviews = () => {
     const [reviews, setReviews] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/reviews')
+        fetch('https://mysterious-forest-45427.herokuapp.com/reviews')
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [])
@@ -19,7 +19,7 @@ const Reviews = () => {
 
         const fullReview = { name, review }
 
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://mysterious-forest-45427.herokuapp.com/reviews', {
             method: "POST",
             headers: {
                 "content-type": "application/json"

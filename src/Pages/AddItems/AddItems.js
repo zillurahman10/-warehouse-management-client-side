@@ -47,7 +47,7 @@ const AddItems = () => {
         e.preventDefault()
         const product = { name, imgUrl, pastMileage, fuelType, engineCapacity, price, quantity, supplierName, description, email }
 
-        fetch('http://localhost:5000/products', {
+        fetch('https://mysterious-forest-45427.herokuapp.com/products', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
