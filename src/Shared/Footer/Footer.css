@@ -1,6 +1,6 @@
 .footer {
     background-color: navy;
-    height: 300px;
+    height: 530px;
     z-index: -1;
 }
 
@@ -10,7 +10,6 @@
     font-weight: 500;
     display: flex;
     justify-content: center;
-    margin: 0;
 }
 
 .social-media a img {

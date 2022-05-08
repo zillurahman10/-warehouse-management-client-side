@@ -7,6 +7,7 @@ import engineIcon from '../../../images/engineIcon.png'
 
 const Product = ({ product }) => {
     const { name, img, price, description, pastMileage, fuelType, cc, quantity, _id, supplierName } = product
+    console.log(product);
     const navigate = useNavigate()
     const handleInventory = () => {
         navigate(`/inventory/${_id}`)

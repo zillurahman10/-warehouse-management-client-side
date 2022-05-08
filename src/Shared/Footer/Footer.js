@@ -1,18 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../images/logo.jpg'
+import { faCopyright } from '@fortawesome/free-solid-svg-icons'
 import facebook from '../../images/facebook.png'
 import twitter from '../../images/twitter.png'
 import linkedin from '../../images/linkedin.png'
 import youtube from '../../images/youtube.png'
 import './Footer.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Footer = () => {
     return (
-        <div className='mt-5' style={{ position: 'relative', width: '100%', bottom: '0' }}>
-            <div className='footer text-light'>
-                <div className='pt-5 container d-flex justify-content-between'>
-                    <div>
+        <div className='mt-5 footer'>
+            <div className=' text-light d-flex justify-content-center'>
+                <div className='pt-5 container d-flex justify-content-between row'>
+                    <div className='col-sm-3'>
                         {/* <div>
                             <img className='img-fluid rounded-3' src={logo} alt="" />
                         </div> */}
@@ -22,7 +23,7 @@ const Footer = () => {
                             <p>(Available : 10:00am to 07:00pm)</p>
                         </div>
                     </div>
-                    <div className='d-flex justify-content-center flex-wrap'>
+                    <div className='d-flex justify-content-center flex-wrap col-sm-3'>
                         <div>
                             <div className='footer-links'>
                                 <Link to='/blogs'>BLOGS</Link>
@@ -35,7 +36,7 @@ const Footer = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='social-media'>
+                    <div className='social-media col-sm-3'>
                         <h5>Follow us</h5>
                         <a href="https://www.facebook.com/kamrul.hassan400/">
                             <img src={facebook} alt="" />
@@ -51,8 +52,10 @@ const Footer = () => {
                         </a>
                     </div>
                 </div>
-                <p className='text-center mt-5'>C copyright @ Car.com</p>
             </div>
+            <p className='text-light text-center mt-5'><FontAwesomeIcon
+                icon={faCopyright}
+            ></FontAwesomeIcon> copyright @ Car.com</p>
         </div>
     );
 };

@@ -23,14 +23,17 @@ const Inventory = () => {
     const handleDeliver = () => {
         const minus = againUpdatedQuantity - 1
         setAgainUpdatedQuantity(minus)
+
         const update = { againUpdatedQuantity, product }
+        console.log(update);
         const url = `https://mysterious-forest-45427.herokuapp.com/inventory/${_id}`
+        console.log(url);
         fetch(url, {
             method: "PUT",
             headers: {
                 "content-type": "application/json"
             },
-            body: JSON.stringify(update)
+            body: JSON.stringify({ name: 'name' })
         })
             .then(res => res.json())
             .then(data => {

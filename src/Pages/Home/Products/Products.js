@@ -15,12 +15,14 @@ const Products = () => {
 
 
 
+
+
     return (
         <div className='container'>
             <h2 className='text-center'>Our items</h2>
             <div className='products-container'>
                 {
-                    products.slice(0, 6).map(product => <Product
+                    products.map(product => <Product
                         key={product._id}
                         product={product}
                     ></Product>)

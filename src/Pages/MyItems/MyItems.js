@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
+import Myitem from '../Myitem/Myitem';
 
 const MyItems = () => {
     const [user, loading, error] = useAuthState(auth);
@@ -24,11 +25,17 @@ const MyItems = () => {
     if (loading) {
         return <Loading></Loading>
     }
-
+    console.log(products);
 
     return (
         <div>
             <h1 className='mt-5 text-center'>This is my item : {products?.length}</h1>
+            {
+                products.map(product => <Myitem
+                    key={product._id}
+                    product={product}
+                ></Myitem>)
+            }
         </div>
     );
 };
