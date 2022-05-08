@@ -1,11 +1,12 @@
 import React from 'react';
 import './Login.css'
-import { useSignInWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import Loading from '../../Shared/Loading/Loading';
+import Swal from 'sweetalert2';
 
 const Login = () => {
     const [
@@ -14,6 +15,7 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+    const [sendPasswordResetEmail, sending, resetError] = useSendPasswordResetEmail(auth);
     let location = useLocation();
 
     let from = location.state?.from?.pathname || "/";
@@ -55,6 +57,19 @@ const Login = () => {
     const facebookSignIn = () => {
         signInWithFacebook()
     }
+    const passwordReset = async () => {
+        const { value: email } = await Swal.fire({
+            title: 'Input email address',
+            input: 'email',
+            inputLabel: 'Your email address',
+            inputPlaceholder: 'Enter your email address'
+        })
+
+        if (email) {
+            Swal.fire(`An verification message sent in this ${email} email`)
+            sendPasswordResetEmail(email)
+        }
+    }
     return (
         <div className='w-25 mx-auto shadow p-3 mt-5 rounded-3 login'>
             <form onSubmit={handleSubmit}>
@@ -67,11 +82,12 @@ const Login = () => {
                     <input type="password" name='password' className="form-control" id="exampleInputPassword1" placeholder='Your Password' required />
                 </div>
                 <p className='text-danger d-flex justify-content-center'>{error?.message}</p>
+                <p className='d-flex justify-content-center'>New in car.com? <Link to='/signup' className='text-decoration-none mx-1'>Create a new account</Link></p>
+                <p className='text-center'>Forget password? <button className='reset-button text-primary' onClick={passwordReset}>Reset password</button></p>
                 <div className="mb-3 form-check d-flex justify-content-center">
                     <input type="checkbox" className="form-check-input" id="exampleCheck1" />
                     <label className="ms-2 form-check-label" htmlFor="exampleCheck1">I agree the terms and condition</label>
                 </div>
-                <p className='d-flex justify-content-center'>New in car.com? <Link to='/signup' className='text-decoration-none mx-1'>Create a new account</Link></p>
                 <button type="submit" className="btn btn-primary w-100">Submit</button>
             </form>
             <div className='mt-3'>

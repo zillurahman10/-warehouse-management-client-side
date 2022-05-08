@@ -6,9 +6,9 @@ const Inventory = () => {
     // const [productQuantity, setProductQuantity] = useState(Number)
     // const [updatedQuantity, setUpdatedQuantity] = useState(Number)
     const [reload, setIsReload] = useState(true)
-    const [increaseQuantity, setIncreaseQuantity] = useState(Number)
+    // const [increaseQuantity, setIncreaseQuantity] = useState(Number)
     const [againUpdatedQuantity, setAgainUpdatedQuantity] = useState(Number)
-    const [plusQuantity, setPlusQuantity] = useState(Number)
+    // const [plusQuantity, setPlusQuantity] = useState(Number)
     const { id } = useParams()
 
     useEffect(() => {
