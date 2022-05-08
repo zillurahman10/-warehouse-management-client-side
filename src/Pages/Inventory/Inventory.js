@@ -3,18 +3,17 @@ import { Link, useParams } from 'react-router-dom';
 
 const Inventory = () => {
     const [product, setProduct] = useState({})
-    // const [productQuantity, setProductQuantity] = useState(Number)
-    // const [updatedQuantity, setUpdatedQuantity] = useState(Number)
     const [reload, setIsReload] = useState(true)
-    // const [increaseQuantity, setIncreaseQuantity] = useState(Number)
     const [againUpdatedQuantity, setAgainUpdatedQuantity] = useState(Number)
-    // const [plusQuantity, setPlusQuantity] = useState(Number)
     const { id } = useParams()
 
     useEffect(() => {
         fetch(`https://mysterious-forest-45427.herokuapp.com/inventory/${id}`)
             .then(res => res.json())
-            .then(data => setProduct(data))
+            .then(data => {
+                console.log(data);
+                setProduct(data)
+            })
     }, [id])
     const { name, img, price, description, pastMileage, fuelType, cc, quantity, _id, supplierName } = product
 

@@ -55,7 +55,7 @@ const Reviews = () => {
                 <br />
                 <textarea name="review" id="review" cols="10" rows="5" className='form-control' placeholder='Write your review'></textarea>
                 <br />
-                <input type="submit" value="Post" className='btn btn-primary' />
+                <input type="submit" value="Post" className='btn btn-primary w-100 mx-auto' />
             </form>
         </div>
     );
