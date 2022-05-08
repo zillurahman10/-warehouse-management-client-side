@@ -33,7 +33,7 @@ const Inventory = () => {
             headers: {
                 "content-type": "application/json"
             },
-            body: JSON.stringify({ name: 'name' })
+            body: JSON.stringify(update)
         })
             .then(res => res.json())
             .then(data => {

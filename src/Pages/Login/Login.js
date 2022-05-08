@@ -90,8 +90,7 @@ const Login = () => {
             </form>
             <div className='mt-3'>
                 <button onClick={googleSignIn} className='btn btn-primary w-100'>Sign in with google</button>
-                <br />
-                <button onClick={facebookSignIn} className='btn btn-primary w-100 mt-3'>Sign in with facebook</button>
+
             </div>
         </div>
     );

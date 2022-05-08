@@ -4,7 +4,14 @@ import Swal from "sweetalert2";
 
 const ManageInventoryTable = ({ product }) => {
     const { _id, name, price, quantity } = product
+    const [products, setProducts] = useState([])
+    useEffect(() => {
+        fetch('https://mysterious-forest-45427.herokuapp.com/products')
+            .then(res => res.json())
+            .then(data => setProducts(data))
+    }, [])
     const navigate = useNavigate()
+
 
     // Delete a product from manageInventory
     const handleDelete = id => {
@@ -36,6 +43,8 @@ const ManageInventoryTable = ({ product }) => {
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
+                    const remining = products.filter(sinProduct => sinProduct._id !== id)
+                    setProducts(remining)
                 })
         }
     }
