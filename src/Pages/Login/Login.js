@@ -72,6 +72,8 @@ const Login = () => {
     }
     return (
         <div className='w-25 mx-auto shadow p-3 mt-5 rounded-3 login'>
+
+            <h2 className='text-center'>Login</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
@@ -84,10 +86,6 @@ const Login = () => {
                 <p className='text-danger d-flex justify-content-center'>{error?.message}</p>
                 <p className='d-flex justify-content-center'>New in car.com? <Link to='/signup' className='text-decoration-none mx-1'>Create a new account</Link></p>
                 <p className='text-center'>Forget password? <button className='reset-button text-primary' onClick={passwordReset}>Reset password</button></p>
-                <div className="mb-3 form-check d-flex justify-content-center">
-                    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                    <label className="ms-2 form-check-label" htmlFor="exampleCheck1">I agree the terms and condition</label>
-                </div>
                 <button type="submit" className="btn btn-primary w-100">Submit</button>
             </form>
             <div className='mt-3'>

@@ -1,10 +1,8 @@
-import { sendEmailVerification } from 'firebase/auth';
 import React, { useState } from 'react';
 import { useCreateUserWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init'
 import 'react-toastify/dist/ReactToastify.css';
-import { toast } from 'react-toastify';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
@@ -16,11 +14,15 @@ const SignUp = () => {
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+
     let location = useLocation();
 
     let from = location.state?.from?.pathname || "/";
+    // google Sign In
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
+
     const [signInWithFacebook, facebookUser, facebookLoading, facebookError] = useSignInWithFacebook(auth);
+
     const navigate = useNavigate()
     if (loading) {
         return <h1>Loading...</h1>
@@ -59,6 +61,7 @@ const SignUp = () => {
     }
     return (
         <div className='w-25 mx-auto shadow p-3 mt-5 rounded-3 login'>
+            <h2 className='text-center'>Sign Up</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Name</label>
@@ -82,7 +85,7 @@ const SignUp = () => {
                     <label className="ms-2 form-check-label" htmlFor="exampleCheck1">I agree the terms and condition</label>
                 </div>
                 <p className='d-flex justify-content-center'>Already have an account? <Link to='/login' className=' mx-1 text-decoration-none'>Login</Link></p>
-                <button type="submit" className="btn btn-primary w-100">Submit</button>
+                <button type="submit" className="submit w-100">Submit</button>
             </form>
             <div className='mt-3'>
                 <button onClick={googleSignIn} className='btn btn-primary w-100'>Sign in with google</button>
