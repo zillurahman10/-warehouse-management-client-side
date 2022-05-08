@@ -25,13 +25,13 @@ const Footer = () => {
                     <div className='d-flex justify-content-center flex-wrap'>
                         <div>
                             <div className='footer-links'>
-                                <Link to='blogs'>BLOGS</Link>
+                                <Link to='/blogs'>BLOGS</Link>
                                 <br />
-                                <Link to='blogs'>BLOGS</Link>
+                                <Link to='/manageinventory'>MANAGE INVENTORY</Link>
                                 <br />
-                                <Link to='blogs'>BLOGS</Link>
+                                <Link to='/myitems'>MY ITEMS</Link>
                                 <br />
-                                <Link to='blogs'>BLOGS</Link>
+                                <Link to='/additem'>ADD ITEMS</Link>
                             </div>
                         </div>
                     </div>

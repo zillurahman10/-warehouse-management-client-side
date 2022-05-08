@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import Loading from '../../Shared/Loading/Loading';
 
 const Login = () => {
     const [
@@ -20,7 +21,7 @@ const Login = () => {
     const [signInWithFacebook, facebookUser, facebookLoading, facebookError] = useSignInWithFacebook(auth);
     const navigate = useNavigate()
     if (loading) {
-        return <h1>Loading...</h1>
+        return <Loading></Loading>
     }
 
     const handleSubmit = async e => {
@@ -46,7 +47,6 @@ const Login = () => {
             draggable: true,
             progress: undefined,
         });
-        // navigate('/')
     }
 
     const googleSignIn = () => {
@@ -71,7 +71,7 @@ const Login = () => {
                     <input type="checkbox" className="form-check-input" id="exampleCheck1" />
                     <label className="ms-2 form-check-label" htmlFor="exampleCheck1">I agree the terms and condition</label>
                 </div>
-                <p className='d-flex justify-content-center'>New in car.com? <Link to='/signup'>Create a new account</Link></p>
+                <p className='d-flex justify-content-center'>New in car.com? <Link to='/signup' className='text-decoration-none mx-1'>Create a new account</Link></p>
                 <button type="submit" className="btn btn-primary w-100">Submit</button>
             </form>
             <div className='mt-3'>

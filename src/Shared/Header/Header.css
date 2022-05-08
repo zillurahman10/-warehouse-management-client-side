@@ -33,3 +33,12 @@
         display: none;
     }
 }
+
+.signOut {
+    border: none;
+    background-color: white;
+}
+
+.user-img {
+    border-radius: 30px;
+}

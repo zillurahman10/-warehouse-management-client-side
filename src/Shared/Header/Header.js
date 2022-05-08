@@ -10,6 +10,7 @@ import { signOut } from 'firebase/auth';
 const Header = () => {
     // const [open, setOpen] = useState(false)
     const [user, loading, error] = useAuthState(auth);
+    console.log(user);
     const logOut = () => {
         signOut(auth)
     }
@@ -21,15 +22,18 @@ const Header = () => {
                 </Link>
             </div>
             <div className='mt-4 links d-flex'>
-                <Link className='mx-4 text-decoration-none' to='/'>HOME</Link>
-                <Link className='mx-4 text-decoration-none' to='/blogs'>BLOGS</Link>
+                <div>
+                    <Link className='mx-4 text-decoration-none' to='/'>HOME</Link>
+                    <Link className='mx-4 text-decoration-none' to='/blogs'>BLOGS</Link>
+                </div>
                 <div>
                     {
                         user ? <div>
                             <Link className='mx-4 text-decoration-none' to='/manageinventory'>MANAGE INVENTORY</Link>
                             <Link className='mx-4 text-decoration-none' to='additems'>ADD ITEM</Link>
                             <Link className='mx-4 text-decoration-none' to='/myitems'>MY ITEMS</Link>
-                            <button onClick={logOut}>Sign Out</button>
+                            <button className='signOut' onClick={logOut}>Sign Out</button>
+                            <img style={{ width: '35px', marginLeft: '5px', alignItems: 'center' }} className='user-img' src={user?.photoURL} alt="" />
                         </div> : <Link className='mx-4 text-decoration-none' to='/login'>LOGIN</Link>
                     }
                 </div>

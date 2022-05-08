@@ -1,18 +1,13 @@
 import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const ManageInventoryTable = ({ product }) => {
     const { _id, name, price, quantity } = product
+    const navigate = useNavigate()
 
     // Delete a product from manageInventory
     const handleDelete = id => {
-        // const [products, setProducts] = useState([])
-
-        // useEffect(() => {
-        //     fetch('http://localhost:5000/products')
-        //         .then(res => res.json())
-        //         .then(data => setProducts(data))
-        // }, [])
 
         const confirm = Swal.fire({
             title: 'Are you sure?',
@@ -47,24 +42,24 @@ const ManageInventoryTable = ({ product }) => {
                 })
         }
     }
+
+    const handleInventory = () => {
+        navigate(`/inventory/${_id}`)
+    }
     return (
-        <div className='container'>
-            <table className="table">
-                <thead>
-                    <tr>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">{_id}</th>
-                        <td>{name}</td>
-                        <td>{price}</td>
-                        <td>{quantity}</td>
-                        <td><button onClick={() => handleDelete(_id)}>Delete</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+
+
+        <tbody>
+            <tr>
+                <th scope="row">{_id}</th>
+                <td>{name}</td>
+                <td>{price}</td>
+                <td>{quantity}</td>
+                <td><button className="btn btn-danger" onClick={() => handleDelete(_id)}>Delete</button>
+                    <button className="btn btn-primary ms-2" onClick={handleInventory}>Update</button>
+                </td>
+            </tr>
+        </tbody>
     );
 };
 

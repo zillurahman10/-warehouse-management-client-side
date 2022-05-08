@@ -1,63 +1,94 @@
 import { sendEmailVerification } from 'firebase/auth';
-import React from 'react';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useCreateUserWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init'
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
+    const [errorElement, setErrorElement] = useState("")
     const [
         createUserWithEmailAndPassword,
         user,
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
-    const navigate = useNavigate()
+    let location = useLocation();
 
-    const handleSubmit = e => {
+    let from = location.state?.from?.pathname || "/";
+    const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
+    const [signInWithFacebook, facebookUser, facebookLoading, facebookError] = useSignInWithFacebook(auth);
+    const navigate = useNavigate()
+    if (loading) {
+        return <h1>Loading...</h1>
+    }
+
+    const handleSubmit = async e => {
         e.preventDefault()
 
         const name = e.target.name.value
         const email = e.target.email.value
         const password = e.target.password.value
-        const confirmPassword = e.target.confirmPassword.value
+        const confirmPassword = e.target.confirmpassword.value
 
-        createUserWithEmailAndPassword(email, password)
+        if (password !== confirmPassword) {
+            return setErrorElement("Password did'nt")
+        }
 
-        console.log(name);
-        console.log(email);
-        console.log(password);
-        console.log(confirmPassword);
-        e.target.reset()
-        toast('email sent', {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
+
+        await createUserWithEmailAndPassword(email, password)
+        const { data } = await axios.post('http://localhost:5000/login', { email })
+
+        localStorage.setItem('accessToken', data.accessToken)
+        Swal.fire(
+            'Verify Email',
+            'An email verification message sent in your emial',
+            'success'
+        )
+        navigate(from, { replace: true });
     }
-    if (user) {
-        navigate('/')
+
+    const googleSignIn = () => {
+        signInWithGoogle()
+    }
+    const facebookSignIn = () => {
+        signInWithFacebook()
     }
     return (
-        <div>
+        <div className='w-25 mx-auto shadow p-3 mt-5 rounded-3 login'>
             <form onSubmit={handleSubmit}>
-                <h2>Please Sing Up</h2>
-                <input type="text" name='name' placeholder='Name' />
-                <br />
-                <input type="email" name="email" id="" placeholder='Email' />
-                <br />
-                <input type="password" name="password" id="" placeholder='Password' />
-                <br />
-                <input type="password" name="confirmPassword" id="" placeholder='Confirm Password' />
-                <br />
-                <input type="submit" value="Sign Up" />
-                <p>Already have an account ? <Link to='/login'>Login</Link></p>
+                <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">Name</label>
+                    <input type="text" name='name' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder='Your Name' required />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
+                    <input type="email" name='email' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder='Your Email' required />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+                    <input type="password" name='password' className="form-control" id="exampleInputPassword1" placeholder='Your Password' required />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="exampleInputPassword1" className="form-label">Confrim Password</label>
+                    <input type="password" name='confirmpassword' className="form-control" id="exampleInputPassword1" placeholder='Confirm Your Password' required />
+                </div>
+                <p className='text-danger d-flex justify-content-center'>{error?.message || errorElement}</p>
+                <div className="mb-3 form-check d-flex justify-content-center">
+                    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+                    <label className="ms-2 form-check-label" htmlFor="exampleCheck1">I agree the terms and condition</label>
+                </div>
+                <p className='d-flex justify-content-center'>Already have an account? <Link to='/login' className=' mx-1 text-decoration-none'>Login</Link></p>
+                <button type="submit" className="btn btn-primary w-100">Submit</button>
             </form>
+            <div className='mt-3'>
+                <button onClick={googleSignIn} className='btn btn-primary w-100'>Sign in with google</button>
+                <br />
+                <button onClick={facebookSignIn} className='btn btn-primary w-100 mt-3'>Sign in with facebook</button>
+            </div>
         </div>
     );
 };
